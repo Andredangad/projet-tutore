@@ -1,3 +1,6 @@
-app_front_homepage:
+app_homepage:
     path:     /
     defaults: { _controller: AppFrontBundle:Default:index }
+app_lesson:
+    path:     /lesson
+    defaults: { _controller: AppFrontBundle:Lesson:lesson }

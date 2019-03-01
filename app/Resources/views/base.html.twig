@@ -2,11 +2,14 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Université de {% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+<a href="{{ path('homepage') }}">Home</a>
+<a href="{{ path('app_lesson') }}">Lesson</a>
+<a href="{{ path('logout') }}">Logout</a>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

@@ -1,9 +1,8 @@
-app_homepage:
-    path:     /
-    defaults: { _controller: AppFrontBundle:Default:index }
 app_front:
     resource: "@AppFrontBundle/Resources/config/routing.yml"
     prefix:   /
+logout:
+    path: /logout
 
 app:
     resource: '@AppBundle/Controller/'
