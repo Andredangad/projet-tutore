@@ -4,3 +4,9 @@ app_homepage:
 app_lesson:
     path:     /lesson
     defaults: { _controller: AppFrontBundle:Lesson:lesson }
+app_planning:
+    path:     /planning
+    defaults: { _controller: AppFrontBundle:Planning:planning }
+app_contact:
+    path:     /contact
+    defaults: { _controller: AppFrontBundle:Contact:contact }
