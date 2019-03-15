@@ -1,0 +1,8 @@
+app_planning:
+    path:     /
+    defaults: { _controller: "AppFrontBundle:Planning:planning" }
+    methods: GET
+planning_new:
+    path:     /new
+    defaults: { _controller: "AppFrontBundle:Planning:new" }
+    methods: [GET, POST]

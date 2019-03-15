@@ -1,7 +1,53 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="jumbotron text-center">
-	<h1>Planning page</h1>
+	<h1>Semestre 2</h1>
+</thead>
 
+                    <tbody>
+
+
+<br/>
+<br/>
+
+
+					<table>
+					{% for planning in planning %}
+                            <tr>
+							<td>{{ planning.heure }}</td>
+                                <td>{{ planning.lundi }}</td>
+								<td>{{ planning.mardi }}</td>
+								<td>{{ planning.mercredi }}</td>
+								<td>{{ planning.jeudi }}</td>
+								<td>{{ planning.vendredi }}</td>
+								
+								
+
+                          
+                            </tr>
+						
+                        {% endfor %}
+                        {% for test in test %}
+                            <tr>
+							<td>{{ test.heure }}</td>
+                                <td>{{ test.lundi }}</td>
+								<td>{{ test.mardi }}</td>
+								<td>{{ test.mercredi }}</td>
+								<td>{{ test.jeudi }}</td>
+								<td>{{ test.vendredi }}</td>
+								
+								
+
+                          
+                            </tr>
+						
+                        {% endfor %}
+					</table>
+					
+					        {% if is_granted('ROLE_ADMIN') == true %}
+            <a class="btn btn-success" href="{{ path('planning_new') }}"><i class="fa fa-plus-square"></i> Ajouter un planning</a>
+{% endif %}
+			
+</tbody>
     </div>
 {% endblock %}
