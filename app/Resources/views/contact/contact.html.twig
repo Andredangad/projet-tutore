@@ -1,7 +1,24 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="jumbotron text-center">
-	<h1>Contact page</h1>
-
-    </div>
+		<h1>Contactez-nous</h1>
+	</div>
+    	<form name="formulaire"  method="get">
+		<p>
+		   Objet du message :<br />
+		   <select name="objet">
+		   	  <option value="question">Question lié au site</option>
+		      <option value="probleme_tech" selected="selected">Problème technique</option>
+		      <option value="autre">Autre</option>
+		   </select>
+		</p>
+		<p>
+		   Votre message :<br />
+		   <textarea name="le-message" rows="6" cols="40"></textarea>
+		</p>
+		<p>
+		   <input type="submit" value="Envoyer" /> 
+		   <input type="reset" value="Annuler" />
+		</p>
+	</form>
 {% endblock %}
