@@ -6,3 +6,11 @@ planning_new:
     path:     /new
     defaults: { _controller: "AppFrontBundle:Planning:new" }
     methods: [GET, POST]
+planning_show:
+    path:     /{filiere}/modifier
+    defaults: { _controller: "AppFrontBundle:Planning:show" }
+    methods: GET
+planning_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppFrontBundle:Planning:edit" }
+    methods: [GET, POST]

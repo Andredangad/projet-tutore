@@ -9,32 +9,34 @@
 
 <br/>
 <br/>
+ {% if is_granted('ROLE_ADMIN') == false %}
+         
 
 
 					<table>
-					{% for planning in planning %}
+
                             <tr>
-							<td>{{ planning.heure }}</td>
-                                <td>{{ planning.lundi }}</td>
-								<td>{{ planning.mardi }}</td>
-								<td>{{ planning.mercredi }}</td>
-								<td>{{ planning.jeudi }}</td>
-								<td>{{ planning.vendredi }}</td>
+							<td></td>
+                                <td>Monday</td>
+								<td>Tuesday</td>
+								<td>Wednesday</td>
+								<td>Thursday</td>
+								<td>Friday</td>
 								
 								
 
                           
                             </tr>
 						
-                        {% endfor %}
-                        {% for test in test %}
+
+                        {% for affichage in affichage %}
                             <tr>
-							<td>{{ test.heure }}</td>
-                                <td>{{ test.lundi }}</td>
-								<td>{{ test.mardi }}</td>
-								<td>{{ test.mercredi }}</td>
-								<td>{{ test.jeudi }}</td>
-								<td>{{ test.vendredi }}</td>
+							<td>{{ affichage.heure }}</td>
+                                <td>{{ affichage.lundi }}</td>
+								<td>{{ affichage.mardi }}</td>
+								<td>{{ affichage.mercredi }}</td>
+								<td>{{ affichage.jeudi }}</td>
+								<td>{{ affichage.vendredi }}</td>
 								
 								
 
@@ -43,7 +45,21 @@
 						
                         {% endfor %}
 					</table>
+					{% endif %}
+					{% for modifier in modifier %}
+                            <tr>
+{% if is_granted('ROLE_ADMIN') == true %}
+							<a class="btn btn-primary btn-sm" href="{{ path('planning_show', { 'filiere': modifier.filiere }) }}">Modifier le planning {{modifier.filiere}}<i class="fa fa-pencil-square-o"></i> </a>
+							{% endif %}
+<br>
+								
+								
+
+                          
+                            </tr>
 					
+                        {% endfor %}
+							<br>
 					        {% if is_granted('ROLE_ADMIN') == true %}
             <a class="btn btn-success" href="{{ path('planning_new') }}"><i class="fa fa-plus-square"></i> Ajouter un planning</a>
 {% endif %}
