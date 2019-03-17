@@ -1,5 +1,5 @@
 <?php
-// src/AppBundle/Controller/LuckyController.php
+// src/App/FrontBundle/Controller/LessonController.php
 namespace App\FrontBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -11,10 +11,8 @@ class LessonController extends Controller
 
     public function lessonAction()
     {
-        $number = random_int(0, 100);
-
         return $this->render('cours/lesson.html.twig', [
-            'number' => $number,
+
         ]);
     }
 }
