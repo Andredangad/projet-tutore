@@ -2,8 +2,8 @@ app_homepage:
     path:     /
     defaults: { _controller: AppFrontBundle:Default:index }
 app_lesson:
-    path:     /lesson
-    defaults: { _controller: AppFrontBundle:Lesson:lesson }
+    resource: "@AppFrontBundle/Resources/config/routing/routing-lesson.yml"
+    prefix: /lesson
 app_planning:
     path:     /planning
     defaults: { _controller: AppFrontBundle:Planning:planning }

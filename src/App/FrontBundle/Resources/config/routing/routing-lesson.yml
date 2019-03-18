@@ -1,0 +1,8 @@
+app_lesson:
+    path:     /
+    defaults: { _controller: AppFrontBundle:Lesson:lesson }
+    methods: GET
+lesson_show_filiere:
+    path:     /matieres
+    defaults: { _controller: "AppFrontBundle:Lesson:showMatieres" }
+    methods: GET

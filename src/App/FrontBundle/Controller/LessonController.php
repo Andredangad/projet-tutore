@@ -12,7 +12,11 @@ class LessonController extends Controller
     public function lessonAction()
     {
         return $this->render('cours/lesson.html.twig', [
-
         ]);
+    }
+
+    public function showMatieresAction()
+    {
+      return $this->render('cours/matieres.html.twig', []);
     }
 }
