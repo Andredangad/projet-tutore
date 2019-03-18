@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="jumbotron text-center">
+	   <h1>Associer un élève à  une filière</h1>
+    </div>
+    <form>
+      Choisir un élève:
+      <select name="matiere" size="1">
+      <option>Élève 1
+      <option>Élève 2
+      <option>Élève 3
+      <option>Élève 4
+      </select><br>
+      Choisir une filière:
+      <select name="matiere" size="1">
+      <option>Filière 1
+      <option>Filière 2
+      <option>Filière 3
+      <option>Filière 4
+      </select><br>
+    </form>
+    <input class="favorite styled" type="button" value="Valider">
+{% endblock %}

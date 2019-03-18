@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="jumbotron text-center">
+	   <h1>Ajouter un cours</h1>
+    </div>
+    <form>
+      Titre:<br>
+      <input type="text" name="titre"><br>
+      Matière:<br>
+      <select name="matiere" size="1">
+      <option>Matière 1
+      <option>Matière 2
+      <option>Matière 3
+      <option>Matière 4
+      </select><br>
+      Description:<br>
+      <textarea name="description" rows=4 cols=40></textarea>
+    </form>
+    <input class="favorite styled"
+       type="button"
+       value="Valider">
+{% endblock %}

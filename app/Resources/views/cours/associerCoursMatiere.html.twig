@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="jumbotron text-center">
+	   <h1>Associer un cours à une matière</h1>
+    </div>
+    <form>
+      Choisir un cours:
+      <select name="matiere" size="1">
+      <option>Cours 1
+      <option>Cours 2
+      <option>Cours 3
+      <option>Cours 4
+      </select><br>
+      Choisir une matière:
+      <select name="matiere" size="1">
+      <option>Matière 1
+      <option>Matière 2
+      <option>Matière 3
+      <option>Matière 4
+      </select><br>
+    </form>
+    <input class="favorite styled" type="button" value="Valider">
+{% endblock %}
