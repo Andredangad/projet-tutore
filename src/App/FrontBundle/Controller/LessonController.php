@@ -17,16 +17,50 @@ class LessonController extends Controller
 
     public function showMatieresAction()
     {
-      return $this->render('cours/showMatieres.html.twig', []);
+      $em = $this->getDoctrine()->getManager();
+        $QUERY = 'SELECT * FROM `matiere`';
+
+        $jour = $em->getConnection()->prepare($QUERY);
+        $jour->execute();
+
+        $resultat = $jour->fetchAll();
+
+      return $this->render('cours/showMatieres.html.twig', array(
+        'affichage'=>$resultat,));
     }
 
     public function showCoursAction()
     {
-      return $this->render('cours/showCours.html.twig', []);
+       $em = $this->getDoctrine()->getManager();
+        $QUERY = 'SELECT * FROM `cours`';
+
+        $jour = $em->getConnection()->prepare($QUERY);
+        $jour->execute();
+
+        $resultat = $jour->fetchAll();
+      return $this->render('cours/showCours.html.twig', array(
+        'affichage'=>$resultat,));
     }
 
     public function addCoursAction()
     {
+
+      
+      if(isset($_POST['Valider'])){
+      $titre = $_POST['titre'];
+      $matiere = $_POST['matiere'];
+      $description = $_POST['description'];
+
+      $em = $this->getDoctrine()->getManager();
+        $QUERY = 'INSERT INTO `cours` (`id`, `titre`, `id_matiere`, `description`) VALUES (NULL, '.$titre.', '.$matiere.', '.$description.')';
+
+
+        $jour = $em->getConnection()->prepare($QUERY);
+        $jour->execute();
+      }
+      else{
+
+      }
       return $this->render('cours/addCours.html.twig', []);
     }
 

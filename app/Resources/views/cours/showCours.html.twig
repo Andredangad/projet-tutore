@@ -2,5 +2,11 @@
 {% block body %}
     <div class="jumbotron text-center">
 	   <h1>Liste des cours</h1>
+	    {% for affichage in affichage %}
+        <tr>
+       <td>{{affichage.titre}}</td>
+       <td>{{affichage.id_matiere}}</td>
+       <td>{{affichage.description}}</td>
+       {% endfor %}
     </div>
 {% endblock %}
