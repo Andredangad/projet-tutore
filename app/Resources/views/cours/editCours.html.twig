@@ -4,23 +4,21 @@
 	   <h1>Modifier un cours</h1>
     </div>
     <form>
-      Choisir un cours:
-      <select name="cours" size="1">
-      {% for affichage in affichage %}
-      <option value = {{affichage.id}}>{{affichage.titre}}
+    Choisir un cours:
+    <select name="cours" size="1">
+      {% for cours in cours %}
+      <option value = {{cours.id}}>{{cours.titre}}
       {% endfor %}
-      </select><br>
+    </select><br>
     <br>
     <form method="GET">
       Titre:<br>
       <input type="text" name="titre" ><br>
-      Matière:<br>
-      <select name="matiere" size="1" >
-      <option value="" selected disabled hidden>Choisissez la matière</option>
-      <option>1
-      <option>2
-      <option>3
-      <option>4
+      Choisir une matière:
+      <select name="matiere" size="1">
+      {% for matiere in matiere %}
+        <option value = {{matiere.id}}>{{matiere.titre}}
+      {% endfor %}
       </select><br>
       Description:<br>
       <textarea name="description" rows=4 cols=40></textarea>

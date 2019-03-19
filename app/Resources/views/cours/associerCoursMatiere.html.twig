@@ -5,19 +5,18 @@
     </div>
     <form>
       Choisir un cours:
-      <select name="matiere" size="1">
-      <option>Cours 1
-      <option>Cours 2
-      <option>Cours 3
-      <option>Cours 4
+      <select name="cours" size="1">
+        {% for cours in cours %}
+        <option value = {{cours.id}}>{{cours.titre}}
+        {% endfor %}
       </select><br>
+      <br>
       Choisir une matière:
       <select name="matiere" size="1">
-      <option>Matière 1
-      <option>Matière 2
-      <option>Matière 3
-      <option>Matière 4
+      {% for matiere in matiere %}
+        <option value = {{matiere.id}}>{{matiere.titre}}
+      {% endfor %}
       </select><br>
+      <input class="favorite styled" type="submit" value="Valider" name="submit">
     </form>
-    <input class="favorite styled" type="button" value="Valider">
 {% endblock %}

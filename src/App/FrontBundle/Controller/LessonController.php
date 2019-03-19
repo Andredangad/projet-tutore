@@ -44,6 +44,13 @@ class LessonController extends Controller
 
     public function addCoursAction()
     {
+      $em = $this->getDoctrine()->getManager();
+      $QUERY = 'SELECT * FROM `matiere`';
+
+      $jour = $em->getConnection()->prepare($QUERY);
+      $jour->execute();
+
+      $matieres = $jour->fetchAll();
 
       if(isset($_GET['submit'])){
       $titre = $_GET['titre'];
@@ -61,28 +68,94 @@ class LessonController extends Controller
 
       }
 
-      return $this->render('cours/addCours.html.twig',[] );
+      return $this->render('cours/addCours.html.twig', array('matiere'=>$matieres,));
     }
 
     public function associerCoursMatiereAction()
     {
-      return $this->render('cours/associerCoursMatiere.html.twig', []);
+      $em = $this->getDoctrine()->getManager();
+      $QUERY = 'SELECT * FROM `cours`';
+
+      $jour = $em->getConnection()->prepare($QUERY);
+      $jour->execute();
+
+      $cours = $jour->fetchAll();
+
+      $em = $this->getDoctrine()->getManager();
+      $QUERY = 'SELECT * FROM `matiere`';
+
+      $jour = $em->getConnection()->prepare($QUERY);
+      $jour->execute();
+
+      $matieres = $jour->fetchAll();
+      //----------------deuxième fonction---------------------------------------
+
+      if(isset($_GET['submit'])){
+        $matiere = $_GET['matiere'];
+        $id = $_GET['cours'];
+        $em = $this->getDoctrine()->getManager();
+        $QUERY = 'UPDATE `cours` SET `id_matiere` = '.$matiere.' WHERE `cours`.`id` = '.$id.'';
+
+        $jour = $em->getConnection()->prepare($QUERY);
+        $jour->execute();
+      }
+      else{
+      }
+      return $this->render('cours/associerCoursMatiere.html.twig', array(
+        'cours'=>$cours,'matiere'=>$matieres,));
     }
 
     public function associerEleveFiliereAction()
     {
-      return $this->render('cours/associerEleveFiliere.html.twig', []);
+      $em = $this->getDoctrine()->getManager();
+      $QUERY = 'SELECT * FROM `etudiant`';
+
+      $jour = $em->getConnection()->prepare($QUERY);
+      $jour->execute();
+
+      $eleve = $jour->fetchAll();
+
+      $em = $this->getDoctrine()->getManager();
+      $QUERY = 'SELECT * FROM `filiere`';
+
+      $jour = $em->getConnection()->prepare($QUERY);
+      $jour->execute();
+
+      $filieres = $jour->fetchAll();
+      //----------------deuxième fonction---------------------------------------
+
+      if(isset($_GET['submit'])){
+        $filiere = $_GET['filiere'];
+        $id = $_GET['eleve'];
+        $em = $this->getDoctrine()->getManager();
+        $QUERY = 'UPDATE `etudiant` SET `id_filiere` = '.$filiere.' WHERE `etudiant`.`id` = '.$id.'';
+
+        $jour = $em->getConnection()->prepare($QUERY);
+        $jour->execute();
+      }
+      else{
+      }
+      return $this->render('cours/associerEleveFiliere.html.twig', array(
+        'eleve'=>$eleve,'filiere'=>$filieres,));
     }
 
     public function editCoursAction()
     {
-       $em = $this->getDoctrine()->getManager();
-        $QUERY = 'SELECT * FROM `cours`';
+      $em = $this->getDoctrine()->getManager();
+      $QUERY = 'SELECT * FROM `cours`';
 
-        $jour = $em->getConnection()->prepare($QUERY);
-        $jour->execute();
+      $jour = $em->getConnection()->prepare($QUERY);
+      $jour->execute();
 
-        $resultat = $jour->fetchAll();
+      $cours = $jour->fetchAll();
+
+      $em = $this->getDoctrine()->getManager();
+      $QUERY = 'SELECT * FROM `matiere`';
+
+      $jour = $em->getConnection()->prepare($QUERY);
+      $jour->execute();
+
+      $matieres = $jour->fetchAll();
       //----------------deuxième fonction---------------------------------------
 
       if(isset($_GET['submit'])AND isset($_GET['titre']) AND isset($_GET['matiere']) AND isset($_GET['description']) ){
@@ -96,34 +169,12 @@ class LessonController extends Controller
 
         $jour = $em->getConnection()->prepare($QUERY);
         $jour->execute();
-
-        /*            
-        $QUERY = 'UPDATE `cours` ';
-
-        if(isset($titre)){
-         $QUERY.append('`titre` = \''.$titre.'\',');
-        }
-
-        if(isset($matiere)){
-         $QUERY.append('`matiere` = \''.$matiere.'\',');
-        }
-
-        if(isset($description)){
-         $QUERY.append('`description` = \''.$description.'\',');  
-        }
-        $QUERY = $QUERY + 'WHERE `cours`.`id` = '.$id.' ';
-        $jour = $em->getConnection()->prepare($QUERY);
-        $jour->execute();
       }
-      else{
-
-      }*/
-      } 
 
       else{
         echo ("Remplissez tous les champs !");
       }
       return $this->render('cours/editCours.html.twig', array(
-        'affichage'=>$resultat,));
+        'cours'=>$cours, 'matiere'=>$matieres,));
     }
 }
