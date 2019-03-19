@@ -76,6 +76,54 @@ class LessonController extends Controller
 
     public function editCoursAction()
     {
-      return $this->render('cours/editCours.html.twig', []);
+       $em = $this->getDoctrine()->getManager();
+        $QUERY = 'SELECT * FROM `cours`';
+
+        $jour = $em->getConnection()->prepare($QUERY);
+        $jour->execute();
+
+        $resultat = $jour->fetchAll();
+      //----------------deuxième fonction---------------------------------------
+
+      if(isset($_GET['submit'])AND isset($_GET['titre']) AND isset($_GET['matiere']) AND isset($_GET['description']) ){
+
+        $titre = $_GET['titre'];
+        $matiere = $_GET['matiere'];
+        $description = $_GET['description'];
+        $id = $_GET['cours'];
+        $em = $this->getDoctrine()->getManager();
+        $QUERY = 'UPDATE `cours` SET `titre` = \''.$titre.'\', `id_matiere` = '.$matiere.', `description` = \''.$description.'\' WHERE `cours`.`id` = '.$id.'';
+
+        $jour = $em->getConnection()->prepare($QUERY);
+        $jour->execute();
+
+        /*            
+        $QUERY = 'UPDATE `cours` ';
+
+        if(isset($titre)){
+         $QUERY.append('`titre` = \''.$titre.'\',');
+        }
+
+        if(isset($matiere)){
+         $QUERY.append('`matiere` = \''.$matiere.'\',');
+        }
+
+        if(isset($description)){
+         $QUERY.append('`description` = \''.$description.'\',');  
+        }
+        $QUERY = $QUERY + 'WHERE `cours`.`id` = '.$id.' ';
+        $jour = $em->getConnection()->prepare($QUERY);
+        $jour->execute();
+      }
+      else{
+
+      }*/
+      } 
+
+      else{
+        echo ("Remplissez tous les champs !");
+      }
+      return $this->render('cours/editCours.html.twig', array(
+        'affichage'=>$resultat,));
     }
 }

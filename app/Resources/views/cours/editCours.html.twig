@@ -5,11 +5,27 @@
     </div>
     <form>
       Choisir un cours:
-      <select name="matiere" size="1">
-      <option>Cours 1
-      <option>Cours 2
-      <option>Cours 3
-      <option>Cours 4
+      <select name="cours" size="1">
+      {% for affichage in affichage %}
+      <option value = {{affichage.id}}>{{affichage.titre}}
+      {% endfor %}
       </select><br>
-    <input class="favorite styled" type="button" value="Valider">
+    <br>
+    <form method="GET">
+      Titre:<br>
+      <input type="text" name="titre" ><br>
+      Matière:<br>
+      <select name="matiere" size="1" >
+      <option value="" selected disabled hidden>Choisissez la matière</option>
+      <option>1
+      <option>2
+      <option>3
+      <option>4
+      </select><br>
+      Description:<br>
+      <textarea name="description" rows=4 cols=40></textarea>
+      <br>
+      <input class="favorite styled" type="submit" value="Valider" name="submit">
+    </form>
+
 {% endblock %}
