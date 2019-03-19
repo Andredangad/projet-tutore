@@ -45,14 +45,13 @@ class LessonController extends Controller
     public function addCoursAction()
     {
 
-      
-      if(isset($_POST['Valider'])){
-      $titre = $_POST['titre'];
-      $matiere = $_POST['matiere'];
-      $description = $_POST['description'];
+      if(isset($_GET['submit'])){
+      $titre = $_GET['titre'];
+      $matiere = $_GET['matiere'];
+      $description = $_GET['description'];
 
       $em = $this->getDoctrine()->getManager();
-        $QUERY = 'INSERT INTO `cours` (`id`, `titre`, `id_matiere`, `description`) VALUES (NULL, '.$titre.', '.$matiere.', '.$description.')';
+        $QUERY = 'INSERT INTO `cours` (`titre`, `id_matiere`, `description`) VALUES (\''.$titre.'\', \''.$matiere.'\', \''.$description.'\')';
 
 
         $jour = $em->getConnection()->prepare($QUERY);
