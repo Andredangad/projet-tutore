@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="jumbotron text-center">
-	   <h1>Ajouter un cours {toto}</h1>
+	   <h1>Ajouter un cours : {{toto}}</h1>
     </div>
     <form method="GET">
       Titre:<br>
@@ -14,7 +14,7 @@
       <option>4
       </select><br>
       Description:<br>
-      <textarea name="description" rows=4 cols=40></textarea>
+      <textarea name="description" rows=4 cols=40></textarea><br>
+      <input class="favorite styled" type="submit" href="add-cours" name="valider" value="Valider">
     </form>
-    <input class="favorite styled" type="submit" value="Valider">
 {% endblock %}

@@ -44,8 +44,7 @@ class LessonController extends Controller
 
     public function addCoursAction()
     {
-
-      
+      /*
       if(isset($_POST['Valider'])){
       $titre = $_POST['titre'];
       $matiere = $_POST['matiere'];
@@ -60,8 +59,16 @@ class LessonController extends Controller
       }
       else{
 
+      }*/
+
+      $toto = "";
+
+      if(isset($_GET['valider'])) {
+        $toto = "Test succed !";
       }
-      return $this->render('cours/addCours.html.twig', []);
+
+      return $this->render('cours/addCours.html.twig', array(
+        'toto'=>$toto,));
     }
 
     public function associerCoursMatiereAction()
