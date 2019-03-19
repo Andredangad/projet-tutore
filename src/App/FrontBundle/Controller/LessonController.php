@@ -60,7 +60,8 @@ class LessonController extends Controller
       else{
 
       }
-      return $this->render('cours/addCours.html.twig', []);
+
+      return $this->render('cours/addCours.html.twig',[] );
     }
 
     public function associerCoursMatiereAction()
