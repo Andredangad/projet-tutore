@@ -38,35 +38,35 @@ class Planning
     /**
      * @var string
      *
-     * @ORM\Column(name="lundi", type="string", length=255)
+     * @ORM\Column(name="lundi", type="string", length=255, nullable=true)
      */
     private $lundi;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mardi", type="string", length=255)
+     * @ORM\Column(name="mardi", type="string", length=255, nullable=true)
      */
     private $mardi;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mercredi", type="string", length=255)
+     * @ORM\Column(name="mercredi", type="string", length=255, nullable=true)
      */
     private $mercredi;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="jeudi", type="string", length=255)
+     * @ORM\Column(name="jeudi", type="string", length=255, nullable=true)
      */
     private $jeudi;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="vendredi", type="string", length=255)
+     * @ORM\Column(name="vendredi", type="string", length=255, nullable=true)
      */
     private $vendredi;
 
