@@ -1,14 +1,21 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="jumbotron text-center">
-	   <h1>Lesson</h1>
-     <div class="menu-lesson">
-       <a href="matieres" class="active">Afficher les matières</a><br>
-       <a href="associer-cours-matiere">Associer un cours à une matière</a><br>
-       <a href="cours">Afficher un cours</a><br>
-       <a href="associer-eleve-filiere">Associer un élève à une filière</a><br>
-       <a href="add-cours">Ajouter un cours</a><br>
-       <a href="edit-cours">Modifier un cours</a><br>
-      </div>
-    </div>
+<br>
+Afficher les cours de :
+
+ {% for affichage in affichage %}
+ 
+<br>
+
+
+<a class="btn btn-primary btn-sm" href="{{ path('lesson_show_cours', { 'id': affichage.id }) }}"> {{affichage.titre}}<i class="fa fa-pencil-square-o"></i> </a>
+
+
+								
+
+                          
+
+						
+{% endfor %}
+
 {% endblock %}

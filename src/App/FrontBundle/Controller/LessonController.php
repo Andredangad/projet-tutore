@@ -5,14 +5,28 @@ namespace App\FrontBundle\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
+use App\FrontBundle\Entity\Cours;
 
 class LessonController extends Controller
 {
 
     public function lessonAction()
     {
-        return $this->render('cours/lesson.html.twig', [
-        ]);
+		$user = $this->getUser();
+		$em = $this->getDoctrine()->getManager();
+        $QUERY = 'SELECT * FROM `matiere` WHERE filiere="'.$user->getFiliere().'"';
+
+        $jour = $em->getConnection()->prepare($QUERY);
+        $jour->execute();
+
+        $resultat = $jour->fetchAll();
+		
+        return $this->render('cours/lesson.html.twig', array(
+		'affichage'=>$resultat,
+
+		));
     }
 
     public function showMatieresAction()
@@ -29,10 +43,11 @@ class LessonController extends Controller
         'affichage'=>$resultat,));
     }
 
-    public function showCoursAction()
+    public function showCoursAction(Request $request)
     {
+		$foo = $request->get('id');
        $em = $this->getDoctrine()->getManager();
-        $QUERY = 'SELECT * FROM `cours`';
+        $QUERY = 'SELECT * FROM `cours` WHERE id_matiere="'.$foo.'"';
 
         $jour = $em->getConnection()->prepare($QUERY);
         $jour->execute();
@@ -42,34 +57,24 @@ class LessonController extends Controller
         'affichage'=>$resultat,));
     }
 
-    public function addCoursAction()
+    public function addCoursAction(Request $request)
     {
-      $em = $this->getDoctrine()->getManager();
-      $QUERY = 'SELECT * FROM `matiere`';
-
-      $jour = $em->getConnection()->prepare($QUERY);
-      $jour->execute();
-
-      $matieres = $jour->fetchAll();
-
-      if(isset($_GET['submit'])){
-      $titre = $_GET['titre'];
-      $matiere = $_GET['matiere'];
-      $description = $_GET['description'];
-
-      $em = $this->getDoctrine()->getManager();
-        $QUERY = 'INSERT INTO `cours` (`titre`, `id_matiere`, `description`) VALUES (\''.$titre.'\', \''.$matiere.'\', \''.$description.'\')';
-
-
-        $jour = $em->getConnection()->prepare($QUERY);
-        $jour->execute();
-      }
-      else{
-
+        $cours = new Cours();
+        $form = $this->createForm('App\FrontBundle\Form\AddCoursType', $cours);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($cours);
+            $em->flush();
+            return $this->redirectToRoute('app_lesson');
+        }
+        return $this->render('cours/addCours.html.twig', array(
+            'cours' => $cours,
+            'form' => $form->createView(),
+        ));
       }
 
-      return $this->render('cours/addCours.html.twig', array('matiere'=>$matieres,));
-    }
+
 
     public function associerCoursMatiereAction()
     {
@@ -139,42 +144,18 @@ class LessonController extends Controller
         'eleve'=>$eleve,'filiere'=>$filieres,));
     }
 
-    public function editCoursAction()
+    public function editCoursAction(Request $request, Cours $cours)
     {
-      $em = $this->getDoctrine()->getManager();
-      $QUERY = 'SELECT * FROM `cours`';
-
-      $jour = $em->getConnection()->prepare($QUERY);
-      $jour->execute();
-
-      $cours = $jour->fetchAll();
-
-      $em = $this->getDoctrine()->getManager();
-      $QUERY = 'SELECT * FROM `matiere`';
-
-      $jour = $em->getConnection()->prepare($QUERY);
-      $jour->execute();
-
-      $matieres = $jour->fetchAll();
-      //----------------deuxième fonction---------------------------------------
-
-      if(isset($_GET['submit'])AND isset($_GET['titre']) AND isset($_GET['matiere']) AND isset($_GET['description']) ){
-
-        $titre = $_GET['titre'];
-        $matiere = $_GET['matiere'];
-        $description = $_GET['description'];
-        $id = $_GET['cours'];
-        $em = $this->getDoctrine()->getManager();
-        $QUERY = 'UPDATE `cours` SET `titre` = \''.$titre.'\', `id_matiere` = '.$matiere.', `description` = \''.$description.'\' WHERE `cours`.`id` = '.$id.'';
-
-        $jour = $em->getConnection()->prepare($QUERY);
-        $jour->execute();
-      }
-
-      else{
-        echo ("Remplissez tous les champs !");
-      }
-      return $this->render('cours/editCours.html.twig', array(
-        'cours'=>$cours, 'matiere'=>$matieres,));
+      $editForm = $this->createForm('App\FrontBundle\Form\CoursType', $cours);
+        $editForm->handleRequest($request);
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('app_lesson');
+        }
+        return $this->render('cours/editCours.html.twig', array(
+            'cours' => $cours,
+            'edit_form' => $editForm->createView(),
+        ));
     }
+    
 }

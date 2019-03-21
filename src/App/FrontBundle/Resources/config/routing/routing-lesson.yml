@@ -7,13 +7,13 @@ lesson_show_matieres:
     defaults: { _controller: "AppFrontBundle:Lesson:showMatieres" }
     methods: GET
 lesson_show_cours:
-    path:     /cours
+    path:     /cours/{id}
     defaults: { _controller: "AppFrontBundle:Lesson:showCours" }
     methods: GET
 lesson_add_cours:
     path:     /add-cours
     defaults: { _controller: "AppFrontBundle:Lesson:addCours" }
-    methods: GET
+    methods: [GET, POST]
 lesson_associer_cours_matiere:
     path:     /associer-cours-matiere
     defaults: { _controller: "AppFrontBundle:Lesson:associerCoursMatiere" }
@@ -23,6 +23,6 @@ lesson_associer_eleve_filiere:
     defaults: { _controller: "AppFrontBundle:Lesson:associerEleveFiliere" }
     methods: GET
 lesson_edit_cours:
-    path:     /edit-cours
+    path:     /edit-cours/{id}
     defaults: { _controller: "AppFrontBundle:Lesson:editCours" }
-    methods: GET
+    methods: [GET, POST]
