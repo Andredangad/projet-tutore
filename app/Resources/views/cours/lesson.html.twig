@@ -1,7 +1,21 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="jumbotron text-center">
-	<h1>Your lucky number is {{ number }}</h1>
+<br>
+Afficher les cours de :
 
-    </div>
+ {% for affichage in affichage %}
+ 
+<br>
+
+
+<a class="btn btn-primary btn-sm" href="{{ path('lesson_show_cours', { 'id': affichage.id }) }}"> {{affichage.titre}}<i class="fa fa-pencil-square-o"></i> </a>
+
+
+								
+
+                          
+
+						
+{% endfor %}
+
 {% endblock %}

@@ -1,24 +1,13 @@
 {% extends 'base.html.twig' %}
-{% block body %}
-    <div class="jumbotron text-center">
-		<h1>Contactez-nous</h1>
-	</div>
-    	<form name="formulaire"  method="get">
-		<p>
-		   Objet du message :<br />
-		   <select name="objet">
-		   	  <option value="question">Question lié au site</option>
-		      <option value="probleme_tech" selected="selected">Problème technique</option>
-		      <option value="autre">Autre</option>
-		   </select>
-		</p>
-		<p>
-		   Votre message :<br />
-		   <textarea name="le-message" rows="6" cols="40"></textarea>
-		</p>
-		<p>
-		   <input type="submit" value="Envoyer" /> 
-		   <input type="reset" value="Annuler" />
-		</p>
-	</form>
-{% endblock %}
+	{% block body %}
+    <div class="container">
+           <div class="row">
+               <div class="col-sm-4">
+                   <h2 class=page-header>Contact Form in Symfony</h2>
+                       {{form_start(form)}}
+                       {{form_widget(form)}}
+                       {{form_end(form)}}
+               </div>
+           </div>
+    </div>
+    {% endblock %}
