@@ -21,12 +21,12 @@ class ContactController extends Controller
     */
     public function contactAction(Request $request)
     {
-		
+	$user = $this->getUser();
       $contact = new Contact;     
      # Add form fields
        $form = $this->createFormBuilder($contact)
-       ->add('name', TextType::class, array('label'=> 'name', 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-       ->add('email', TextType::class, array('label'=> 'email','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
+       ->add('name', TextType::class, array('label'=> 'name', 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px','value'=>$user->getUsername())))
+       ->add('email', TextType::class, array('label'=> 'email','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px','value'=>$user->getEmail())))
        ->add('message', TextareaType::class, array('label'=> 'message','attr' => array('class' => 'form-control')))
        ->add('Save', SubmitType::class, array('label'=> 'submit', 'attr' => array('class' => 'btn btn-primary', 'style' => 'margin-top:15px')))
        ->getForm();
@@ -46,11 +46,16 @@ class ContactController extends Controller
                $sn = $this->getDoctrine()->getManager();      
                $sn -> persist($contact);
 		   $sn -> flush();
-		   		       $message = \Swift_Message::newInstance()
-                   ->setFrom('unilim.andre@gmail.com')
+		   		       $message1 = \Swift_Message::newInstance()
+                   ->setFrom('andre.dang@hotmail.fr')
                    ->setTo($email)
-                   ->setBody($this->renderView('contact/sendemail.html.twig',array('name' => $name)),'text/html');
-				$this->get('mailer')->send($message);
+                   ->setBody($this->renderView('emails/sendemail.html.twig',array('name' => $name)),'text/html');
+			$this->get('mailer')->send($message1);
+				 $message1 = \Swift_Message::newInstance()
+                   ->setFrom($email)
+                   ->setTo('unilim.andre@gmail.com')
+                   ->setBody($this->renderView('emails/sendmessage.html.twig',array('message' => $message,'name' => $name, 'email' => $email)),'text/html');
+			$this->get('mailer')->send($message1);
 		   
 		   
 		   }
