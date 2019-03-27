@@ -21,7 +21,10 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="filiere", type="string", length=255)
+
+
+     * @ORM\Column(name="filiere", type="string", length=255, nullable=true)
+
      */
     private $filiere;
 	
