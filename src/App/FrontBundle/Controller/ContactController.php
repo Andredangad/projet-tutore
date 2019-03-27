@@ -21,29 +21,40 @@ class ContactController extends Controller
     */
     public function contactAction(Request $request)
     {
-	$user = $this->getUser();
-      $contact = new Contact;     
+      $foo = $request->get('langue');
+    	$user = $this->getUser();
+      $contact = new Contact;
      # Add form fields
-       $form = $this->createFormBuilder($contact)
-       ->add('name', TextType::class, array('label'=> 'name', 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px','value'=>$user->getUsername())))
-       ->add('email', TextType::class, array('label'=> 'email','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px','value'=>$user->getEmail())))
-       ->add('message', TextareaType::class, array('label'=> 'message','attr' => array('class' => 'form-control')))
-       ->add('Save', SubmitType::class, array('label'=> 'submit', 'attr' => array('class' => 'btn btn-primary', 'style' => 'margin-top:15px')))
-       ->getForm();
+       if ($foo == 'fr') {
+        $form = $this->createFormBuilder($contact)
+         ->add('name', TextType::class, array('label'=> 'nom', 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px','value'=>$user->getUsername())))
+         ->add('email', TextType::class, array('label'=> 'email','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px','value'=>$user->getEmail())))
+         ->add('message', TextareaType::class, array('label'=> 'message','attr' => array('class' => 'form-control')))
+         ->add('Save', SubmitType::class, array('label'=> 'valider', 'attr' => array('class' => 'btn btn-primary', 'style' => 'margin-top:15px')))
+         ->getForm();
+       }
+       else {
+         $form = $this->createFormBuilder($contact)
+         ->add('name', TextType::class, array('label'=> 'name', 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px','value'=>$user->getUsername())))
+         ->add('email', TextType::class, array('label'=> 'email','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px','value'=>$user->getEmail())))
+         ->add('message', TextareaType::class, array('label'=> 'message','attr' => array('class' => 'form-control')))
+         ->add('Save', SubmitType::class, array('label'=> 'submit', 'attr' => array('class' => 'btn btn-primary', 'style' => 'margin-top:15px')))
+         ->getForm();
+       }
      # Handle form response
        $form->handleRequest($request);
-	       # check if form is submitted 
+	       # check if form is submitted
            if($form->isSubmitted() &&  $form->isValid()){
                $name = $form['name']->getData();
                $email = $form['email']->getData();
 
-               $message = $form['message']->getData(); 
-         # set form data   
+               $message = $form['message']->getData();
+         # set form data
                $contact->setName($name);
-               $contact->setEmail($email);          
-               $contact->setMessage($message);                
+               $contact->setEmail($email);
+               $contact->setMessage($message);
           # finally add data in database
-               $sn = $this->getDoctrine()->getManager();      
+               $sn = $this->getDoctrine()->getManager();
                $sn -> persist($contact);
 		   $sn -> flush();
 		   		       $message1 = \Swift_Message::newInstance()
@@ -56,11 +67,11 @@ class ContactController extends Controller
                    ->setTo('unilim.andre@gmail.com')
                    ->setBody($this->renderView('emails/sendmessage.html.twig',array('message' => $message,'name' => $name, 'email' => $email)),'text/html');
 			$this->get('mailer')->send($message1);
-		   
-		   
+
+
 		   }
 
-	   return $this->render('contact/contact.html.twig',array('form' => $form->createView()));
+	    return $this->render($foo.'/contact/contact.html.twig',array('form' => $form->createView()));
     }
-	
+
 }

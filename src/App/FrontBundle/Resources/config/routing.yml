@@ -8,5 +8,5 @@ app_planning:
     resource: "@AppFrontBundle/Resources/config/routing/routing.yml"
     prefix: /planning
 app_contact:
-    path:     /contact
+    path:     /{langue}/contact
     defaults: { _controller: AppFrontBundle:Contact:contact }

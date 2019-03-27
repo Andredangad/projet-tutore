@@ -6,12 +6,7 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-		$foo = $request->get('langue');
-		if ($foo == "fr"){
-        return $this->render('Accueil/index1.html.twig');
-		}
-	else{
-		return $this->render('Accueil/index.html.twig');
+  		$foo = $request->get('langue');
+      return $this->render($foo.'/accueil/index.html.twig');
     }
-
-}}
+}
