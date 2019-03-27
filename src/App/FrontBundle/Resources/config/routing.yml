@@ -1,5 +1,5 @@
 app_homepage:
-    path:     /
+    path:     /{langue}
     defaults: { _controller: AppFrontBundle:Default:index }
 app_lesson:
     resource: "@AppFrontBundle/Resources/config/routing/routing-lesson.yml"
