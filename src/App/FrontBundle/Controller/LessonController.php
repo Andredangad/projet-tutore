@@ -22,9 +22,17 @@ class LessonController extends Controller
         $jour->execute();
 
         $resultat = $jour->fetchAll();
+		$QUERYS = 'SELECT DISTINCT titre,id FROM matiere';
+		
+        
+        $state = $em->getConnection()->prepare($QUERYS);
+        $state->execute();
+
+        $results = $state->fetchAll();
 		
         return $this->render('cours/lesson.html.twig', array(
 		'affichage'=>$resultat,
+		'modifier'=>$results,
 
 		));
     }

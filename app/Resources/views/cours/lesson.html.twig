@@ -1,21 +1,38 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <br>
-Afficher les cours de :
 
+{% if is_granted('ROLE_ADMIN') == false %}
+Afficher les cours de :
  {% for affichage in affichage %}
+
  
 <br>
 
 
 <a class="btn btn-primary btn-sm" href="{{ path('lesson_show_cours', { 'id': affichage.id }) }}"> {{affichage.titre}}<i class="fa fa-pencil-square-o"></i> </a>
+{% endfor %}
+{% endif %}
 
+{% if is_granted('ROLE_ADMIN') == true %}
+					{% for modifier in modifier %}
+							<a class="btn btn-primary btn-sm" href="{{ path('lesson_show_cours', { 'id': modifier.id }) }}">Modifier le cours {{modifier.titre}}<i class="fa fa-pencil-square-o"></i> </a>
 
+<br>
+								
+								
+
+                          
+                            </tr>
+					
+                        {% endfor %}
+
+{% endif %}
 								
 
                           
 
 						
-{% endfor %}
+
 
 {% endblock %}

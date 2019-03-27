@@ -26,3 +26,7 @@ lesson_edit_cours:
     path:     /edit-cours/{id}
     defaults: { _controller: "AppFrontBundle:Lesson:editCours" }
     methods: [GET, POST]
+lesson_show:
+    path:     /{cours}/modifier
+    defaults: { _controller: "AppFrontBundle:Planning:show" }
+    methods: GET
