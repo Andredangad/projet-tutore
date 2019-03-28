@@ -10,6 +10,3 @@ app_planning:
 app_contact:
     path:     /{langue}/contact
     defaults: { _controller: AppFrontBundle:Contact:contact }
-home:
-    path:     /{langue}
-    defaults: { _controller: AppFrontBundle:Default:langue }
