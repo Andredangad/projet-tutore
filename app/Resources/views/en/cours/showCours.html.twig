@@ -1,0 +1,20 @@
+{% extends 'en/base.html.twig' %}
+{% block body %}
+    <div class="jumbotron text-center">
+	   <h1>List of the lessons</h1>
+	    {% for affichage in affichage %}
+
+<h3>{{affichage.titre}}</h3>
+	   <br>
+{{affichage.description}}
+	   <br>
+	   {% if is_granted('ROLE_TRAD') == true %}
+							<a class="btn btn-primary btn-sm" href="{{ path('lesson_edit_cours', { 'id': affichage.id, 'langue': 'en' }) }}">Edit {{affichage.titre}}<i class="fa fa-pencil-square-o"></i> </a>
+{% endif %}
+       {% endfor %}
+    </div>
+	{% if is_granted('ROLE_TRAD') == true %}
+	<br>
+	<a class="btn btn-success" href="{{ path('lesson_add_cours' , {'langue': 'en'}) }}"><i class="fa fa-plus-square"></i>Add lesson</a>
+	{% endif %}
+{% endblock %}

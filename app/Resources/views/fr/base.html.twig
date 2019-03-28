@@ -2,7 +2,7 @@
 <html>
    <head>
        <meta charset="UTF-8" />
-       <title>{% block title %}Welcome!{% endblock %}</title>
+       <title>{% block title %}Bienvenue!{% endblock %}</title>
        {% block stylesheets %}{% endblock %}
        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -13,8 +13,9 @@
     <a href="{{ path('app_lesson', {'langue': 'fr'}) }}">Cours</a>
     <a href="{{ path('app_planning', {'langue': 'fr'}) }}">Calendrier</a>
     <a href="{{ path('app_contact', {'langue': 'fr'}) }}">Contact</a>
+    <a href="{{ path('homepage') }}">Français</a>
+    <a href="{{ path('home') }}">English</a>
     <a href="{{ path('logout') }}">Déconnexion</a>
-	<a href="{{ path('home') }}">English</a>
        <div class="alert alert-success">
    {% set flashbag_notices = app.session.flashbag.get('notice') %}
    {% if flashbag_notices is not empty %}

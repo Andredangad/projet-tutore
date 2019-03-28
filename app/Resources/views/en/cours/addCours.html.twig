@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'en/base.html.twig' %}
 
 {% block body %}
 <div class="form-w3layouts">
@@ -6,12 +6,12 @@
         <div class="col-lg-12">
             <section class="panel">
             <header class="panel-heading">
-                Ajout cours
+                Add lesson
             </header>
                 <div class="panel-body">
                     {{ form_start(form, {'class': 'form-horizontal bucket-form'}) }}
                         <div class="row form-group">
-                            <label class="col-sm-3 control-label">Titre</label>
+                            <label class="col-sm-3 control-label">Title</label>
                             <div class="col-sm-6">
                                 {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
                             </div>
@@ -30,7 +30,7 @@
                         </div>
 
 
-                        <input class="btn btn-success right" type="submit" value="Enregister" />
+                        <input class="btn btn-success right" type="submit" value="Save" />
                     {{ form_end(form) }}
                 </div>
             </section>

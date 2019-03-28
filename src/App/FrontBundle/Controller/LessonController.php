@@ -12,7 +12,7 @@ use App\FrontBundle\Entity\Cours;
 class LessonController extends Controller
 {
 
-    public function lessonAction()
+    public function lessonAction(Request $request)
     {
 		$user = $this->getUser();
 		$em = $this->getDoctrine()->getManager();
@@ -23,21 +23,21 @@ class LessonController extends Controller
 
         $resultat = $jour->fetchAll();
 		$QUERYS = 'SELECT DISTINCT titre,id FROM matiere';
-		
-        
+
+
         $state = $em->getConnection()->prepare($QUERYS);
         $state->execute();
 
         $results = $state->fetchAll();
-		
-        return $this->render('cours/lesson.html.twig', array(
+        $foo = $request->get('langue');
+        return $this->render($foo.'/cours/lesson.html.twig', array(
 		'affichage'=>$resultat,
 		'modifier'=>$results,
 
 		));
     }
 
-    public function showMatieresAction()
+    public function showMatieresAction(Request $request)
     {
       $em = $this->getDoctrine()->getManager();
         $QUERY = 'SELECT * FROM `matiere`';
@@ -46,8 +46,8 @@ class LessonController extends Controller
         $jour->execute();
 
         $resultat = $jour->fetchAll();
-
-      return $this->render('cours/showMatieres.html.twig', array(
+        $foo = $request->get('langue');
+      return $this->render($foo.'/cours/showMatieres.html.twig', array(
         'affichage'=>$resultat,));
     }
 
@@ -61,7 +61,8 @@ class LessonController extends Controller
         $jour->execute();
 
         $resultat = $jour->fetchAll();
-      return $this->render('cours/showCours.html.twig', array(
+        $foo = $request->get('langue');
+      return $this->render($foo.'/cours/showCours.html.twig', array(
         'affichage'=>$resultat,));
     }
 
@@ -76,7 +77,8 @@ class LessonController extends Controller
             $em->flush();
             return $this->redirectToRoute('app_lesson');
         }
-        return $this->render('cours/addCours.html.twig', array(
+        $foo = $request->get('langue');
+        return $this->render($foo.'/cours/addCours.html.twig', array(
             'cours' => $cours,
             'form' => $form->createView(),
         ));
@@ -84,7 +86,7 @@ class LessonController extends Controller
 
 
 
-    public function associerCoursMatiereAction()
+    public function associerCoursMatiereAction(Request $request)
     {
       $em = $this->getDoctrine()->getManager();
       $QUERY = 'SELECT * FROM `cours`';
@@ -114,7 +116,8 @@ class LessonController extends Controller
       }
       else{
       }
-      return $this->render('cours/associerCoursMatiere.html.twig', array(
+      $foo = $request->get('langue');
+      return $this->render($foo.'/cours/associerCoursMatiere.html.twig', array(
         'cours'=>$cours,'matiere'=>$matieres,));
     }
 
@@ -148,7 +151,8 @@ class LessonController extends Controller
       }
       else{
       }
-      return $this->render('cours/associerEleveFiliere.html.twig', array(
+      $foo = $request->get('langue');
+      return $this->render($foo.'/cours/associerEleveFiliere.html.twig', array(
         'eleve'=>$eleve,'filiere'=>$filieres,));
     }
 
@@ -156,14 +160,15 @@ class LessonController extends Controller
     {
       $editForm = $this->createForm('App\FrontBundle\Form\CoursType', $cours);
         $editForm->handleRequest($request);
+        $foo = $request->get('langue');
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('app_lesson');
+            return $this->redirectToRoute($foo.'app_lesson');
         }
-        return $this->render('cours/editCours.html.twig', array(
+        return $this->render($foo.'/cours/editCours.html.twig', array(
             'cours' => $cours,
             'edit_form' => $editForm->createView(),
         ));
     }
-    
+
 }
