@@ -10,6 +10,6 @@ class AppFrontBundle extends Bundle
 {
   public function indexAction()
   {
-    return $this->render('fr/accueil/index.html.twig');
+
   }
 }
