@@ -12,6 +12,6 @@ class DefaultController extends Controller
 			
 		}
 		else
-      return $this->render($foo.'/accueil/index.html.twig');
+      return $this->render('fr/accueil/index.html.twig');
     }
 }

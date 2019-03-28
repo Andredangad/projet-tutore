@@ -3,10 +3,10 @@ app_homepage:
     defaults: { _controller: AppFrontBundle:Default:index }
 app_lesson:
     resource: "@AppFrontBundle/Resources/config/routing/routing-lesson.yml"
-    prefix: /lesson
+    prefix: /{langue}/lesson
 app_planning:
     resource: "@AppFrontBundle/Resources/config/routing/routing.yml"
-    prefix: /planning
+    prefix: /{langue}/planning
 app_contact:
     path:     /{langue}/contact
     defaults: { _controller: AppFrontBundle:Contact:contact }
