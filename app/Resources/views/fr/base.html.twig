@@ -14,6 +14,7 @@
     <a href="{{ path('app_planning', {'langue': "fr"}) }}">Calendrier</a>
     <a href="{{ path('app_contact', {'langue': "fr"}) }}">Contact</a>
     <a href="{{ path('logout') }}">Déconnexion</a>
+	<a href="{{ path('home', {'langue': "en"}) }}">English</a>
        <div class="alert alert-success">
    {% set flashbag_notices = app.session.flashbag.get('notice') %}
    {% if flashbag_notices is not empty %}

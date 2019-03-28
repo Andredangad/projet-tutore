@@ -6,12 +6,18 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-  		$foo = $request->get('langue');
-		if ($foo == "login"){
-        return $this->render('fr/accueil/index.html.twig');
-			
-		}
-		else
+
       return $this->render('fr/accueil/index.html.twig');
-    }
+
 }
+
+    public function langueAction(Request $request)
+    {
+
+      return $this->render('en/accueil/index.html.twig');
+
+}
+
+}
+
+
