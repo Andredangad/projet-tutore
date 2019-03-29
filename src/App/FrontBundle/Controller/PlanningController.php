@@ -16,10 +16,10 @@ class PlanningController extends Controller
     {
  $user = $this->getUser();
 
-
+	$foo = $request->get('langue');
 		$em = $this->getDoctrine()->getManager();
         $planning = $em->getRepository('AppFrontBundle:Planning')->findAll();
-		$RAW_QUERY = 'SELECT * FROM planning WHERE filiere="'.$user->getFiliere().'"';
+		$RAW_QUERY = 'SELECT * FROM planning WHERE filiere="'.$user->getFiliere().'"AND langue="'.$foo.'"';
 		
         
         $statement = $em->getConnection()->prepare($RAW_QUERY);
@@ -41,7 +41,7 @@ class PlanningController extends Controller
         $state->execute();
 
         $results = $state->fetchAll();
-		$foo = $request->get('langue');
+		
         return $this->render($foo.'/planning/planning.html.twig',array(
 		'planning'=>$resultat,
 		'affichage'=>$result,

@@ -14,9 +14,11 @@ class LessonController extends Controller
 
     public function lessonAction(Request $request)
     {
+		
 		$user = $this->getUser();
+		$foo = $request->get('langue');
 		$em = $this->getDoctrine()->getManager();
-        $QUERY = 'SELECT * FROM `matiere` WHERE filiere="'.$user->getFiliere().'"';
+        $QUERY = 'SELECT * FROM `matiere` WHERE filiere="'.$user->getFiliere().'"AND langue="'.$foo.'"';
 
         $jour = $em->getConnection()->prepare($QUERY);
         $jour->execute();
@@ -29,7 +31,7 @@ class LessonController extends Controller
         $state->execute();
 
         $results = $state->fetchAll();
-        $foo = $request->get('langue');
+
         return $this->render($foo.'/cours/lesson.html.twig', array(
 		'affichage'=>$resultat,
 		'modifier'=>$results,
@@ -84,77 +86,6 @@ class LessonController extends Controller
         ));
       }
 
-
-
-    public function associerCoursMatiereAction(Request $request)
-    {
-      $em = $this->getDoctrine()->getManager();
-      $QUERY = 'SELECT * FROM `cours`';
-
-      $jour = $em->getConnection()->prepare($QUERY);
-      $jour->execute();
-
-      $cours = $jour->fetchAll();
-
-      $em = $this->getDoctrine()->getManager();
-      $QUERY = 'SELECT * FROM `matiere`';
-
-      $jour = $em->getConnection()->prepare($QUERY);
-      $jour->execute();
-
-      $matieres = $jour->fetchAll();
-      //----------------deuxième fonction---------------------------------------
-
-      if(isset($_GET['submit'])){
-        $matiere = $_GET['matiere'];
-        $id = $_GET['cours'];
-        $em = $this->getDoctrine()->getManager();
-        $QUERY = 'UPDATE `cours` SET `id_matiere` = '.$matiere.' WHERE `cours`.`id` = '.$id.'';
-
-        $jour = $em->getConnection()->prepare($QUERY);
-        $jour->execute();
-      }
-      else{
-      }
-      $foo = $request->get('langue');
-      return $this->render($foo.'/cours/associerCoursMatiere.html.twig', array(
-        'cours'=>$cours,'matiere'=>$matieres,));
-    }
-
-    public function associerEleveFiliereAction()
-    {
-      $em = $this->getDoctrine()->getManager();
-      $QUERY = 'SELECT * FROM `etudiant`';
-
-      $jour = $em->getConnection()->prepare($QUERY);
-      $jour->execute();
-
-      $eleve = $jour->fetchAll();
-
-      $em = $this->getDoctrine()->getManager();
-      $QUERY = 'SELECT * FROM `filiere`';
-
-      $jour = $em->getConnection()->prepare($QUERY);
-      $jour->execute();
-
-      $filieres = $jour->fetchAll();
-      //----------------deuxième fonction---------------------------------------
-
-      if(isset($_GET['submit'])){
-        $filiere = $_GET['filiere'];
-        $id = $_GET['eleve'];
-        $em = $this->getDoctrine()->getManager();
-        $QUERY = 'UPDATE `etudiant` SET `id_filiere` = '.$filiere.' WHERE `etudiant`.`id` = '.$id.'';
-
-        $jour = $em->getConnection()->prepare($QUERY);
-        $jour->execute();
-      }
-      else{
-      }
-      $foo = $request->get('langue');
-      return $this->render($foo.'/cours/associerEleveFiliere.html.twig', array(
-        'eleve'=>$eleve,'filiere'=>$filieres,));
-    }
 
     public function editCoursAction(Request $request, Cours $cours)
     {
