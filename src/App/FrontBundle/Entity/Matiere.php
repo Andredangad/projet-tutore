@@ -34,7 +34,12 @@ class Matiere
      * @ORM\Column(name="filiere", type="string", length=255)
      */
     private $filiere;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="langue", type="string", length=255, nullable=true)
+     */
+    private $langue;
 
     /**
      * Get id
@@ -92,6 +97,29 @@ class Matiere
     public function getFiliere()
     {
         return $this->filiere;
+    }
+	/**
+     * Set langue
+     *
+     * @param string $langue
+     *
+     * @return Matiere
+     */
+    public function setLangue($langue)
+    {
+        $this->langue = $langue;
+
+        return $this;
+    }
+
+    /**
+     * Get langue
+     *
+     * @return string
+     */
+    public function getLangue()
+    {
+        return $this->langue;
     }
 }
 

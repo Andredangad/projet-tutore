@@ -1,0 +1,68 @@
+{% extends 'en/base.html.twig' %}
+
+{% block body %}
+<div class="form-w3layouts">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+            <header class="panel-heading">
+                Add Planning
+            </header>
+                <div class="panel-body">
+                    {{ form_start(form, {'class': 'form-horizontal bucket-form'}) }}
+                        <div class="row form-group">
+                            <label class="col-sm-3 control-label">Study Pathway</label>
+                            <div class="col-sm-6">
+                                {{ form_widget(form.filiere, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-3 control-label">Hours</label>
+                            <div class="col-sm-6">
+                                {{ form_widget(form.heure, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-3 control-label">Monday</label>
+                            <div class="col-sm-6">
+                                {{ form_widget(form.lundi, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-3 control-label">Tuesday</label>
+                            <div class="col-sm-6">
+                                {{ form_widget(form.mardi, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-3 control-label">Wednesday</label>
+                            <div class="col-sm-6">
+                                {{ form_widget(form.mercredi, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-3 control-label">Thursday</label>
+                            <div class="col-sm-6">
+                                {{ form_widget(form.jeudi, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+							</div>
+						<div class="row form-group">
+                            <label class="col-sm-3 control-label">Friday</label>
+                            <div class="col-sm-6">
+                                {{ form_widget(form.vendredi, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+						   <div class="row form-group">
+                            <label class="col-sm-3 control-label">Langue</label>
+                            <div class="col-sm-6">
+                                {{ form_widget(form.langue, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <input class="btn btn-success right" type="submit" value="Submit" />
+                    {{ form_end(form) }}
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

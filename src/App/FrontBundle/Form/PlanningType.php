@@ -10,7 +10,7 @@ class PlanningType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('filiere')->add('heure')->add('lundi')->add('mardi')->add('mercredi')->add('jeudi')->add('vendredi');
+        $builder->add('filiere')->add('heure')->add('lundi')->add('mardi')->add('mercredi')->add('jeudi')->add('vendredi')->add('langue');
     }/**
      * {@inheritdoc}
      */

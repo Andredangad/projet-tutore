@@ -69,6 +69,12 @@ class Planning
      * @ORM\Column(name="vendredi", type="string", length=255, nullable=true)
      */
     private $vendredi;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="langue", type="string", length=255, nullable=true)
+     */
+    private $langue;
 
 
     /**
@@ -247,6 +253,29 @@ class Planning
     public function getVendredi()
     {
         return $this->vendredi;
+    }
+	/**
+     * Set langue
+     *
+     * @param string $langue
+     *
+     * @return Planning
+     */
+    public function setLangue($langue)
+    {
+        $this->langue = $langue;
+
+        return $this;
+    }
+
+    /**
+     * Get langue
+     *
+     * @return string
+     */
+    public function getLangue()
+    {
+        return $this->langue;
     }
 }
 

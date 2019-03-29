@@ -12,7 +12,7 @@ use App\FrontBundle\Entity\Planning;
 class PlanningController extends Controller
 {
 
-    public function planningAction()
+    public function planningAction(Request $request)
     {
  $user = $this->getUser();
 
@@ -41,8 +41,8 @@ class PlanningController extends Controller
         $state->execute();
 
         $results = $state->fetchAll();
-
-        return $this->render('planning/planning.html.twig',array(
+		$foo = $request->get('langue');
+        return $this->render($foo.'/planning/planning.html.twig',array(
 		'planning'=>$resultat,
 		'affichage'=>$result,
 		'modifier'=>$results,
@@ -55,6 +55,7 @@ class PlanningController extends Controller
      */
     public function newAction(Request $request)
     {
+		$foo = $request->get('langue');
         $planning = new Planning();
         $form = $this->createForm('App\FrontBundle\Form\PlanningType', $planning);
         $form->handleRequest($request);
@@ -64,15 +65,15 @@ class PlanningController extends Controller
             $em->persist($planning);
             $em->flush();
 
-            return $this->redirectToRoute('app_planning');
+            return $this->redirectToRoute('app_planning', array( 'langue' => $foo ));
         }
 
-        return $this->render('planning/new.html.twig', array(
+        return $this->render($foo.'/planning/new.html.twig', array(
             'planning' => $planning,
             'form' => $form->createView(),
         ));
     }
- public function modifierAction()
+ public function modifierAction(Request $request)
     {
  $user = $this->getUser();
 
@@ -80,7 +81,7 @@ class PlanningController extends Controller
 		$em = $this->getDoctrine()->getManager();
         $planning = $em->getRepository('AppFrontBundle:Planning')->findAll();
 
-        return $this->render('planning/modifier.html.twig',array(
+        return $this->render($foo.'/planning/modifier.html.twig',array(
 		'planning'=>$planning
 		));
 
@@ -99,7 +100,8 @@ class PlanningController extends Controller
         
         $statement = $em->getConnection()->prepare($RAW_QUERY);
         $statement->execute();
-        return $this->render('planning/show.html.twig', array(
+		$foo = $request->get('langue');
+        return $this->render($foo.'/planning/show.html.twig', array(
             'planning' => $statement,
         ));
     }
@@ -108,14 +110,15 @@ class PlanningController extends Controller
      */
     public function editAction(Request $request, Planning $planning)
     {
-
+		$foo = $request->get('langue');
         $editForm = $this->createForm('App\FrontBundle\Form\PlanningType', $planning);
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('app_planning');
+            return $this->redirectToRoute('app_planning', array( 'langue' => $foo ));
         }
-        return $this->render('planning/edit.html.twig', array(
+
+        return $this->render($foo.'/planning/edit.html.twig', array(
             'planning' => $planning,
             'edit_form' => $editForm->createView(),
         ));

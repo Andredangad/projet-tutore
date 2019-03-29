@@ -11,7 +11,7 @@ class AddCoursType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titre')->add('id_matiere')->add('description');
+        $builder->add('titre')->add('id_matiere')->add('description')->add('langue');
     }/**
      * {@inheritdoc}
      */

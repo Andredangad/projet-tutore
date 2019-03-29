@@ -1,0 +1,42 @@
+{% extends 'en/base.html.twig' %}
+{% block body %}
+    <div class="jumbotron text-center">
+	<h1>Semestre 2</h1>
+</thead>
+
+                    <tbody>
+
+
+<br/>
+<br/>
+
+
+					<table>
+					{% for planning in planning %}
+                            <tr>
+							<td>{{ planning.heure }}</td>
+                                <td>{{ planning.lundi }}</td>
+								<td>{{ planning.mardi }}</td>
+								<td>{{ planning.mercredi }}</td>
+								<td>{{ planning.jeudi }}</td>
+								<td>{{ planning.vendredi }}   {% if is_granted('ROLE_ADMIN') == true %}
+                                        <a class="btn btn-primary btn-sm" href="{{ path('planning_edit', { 'id': planning.id, 'langue': 'en' }) }}">Edit<i class="fa fa-pencil-square-o"></i> </a>
+{% endif %}</td>
+								    
+								
+
+                          
+                            </tr>
+						
+                                    
+						
+                        {% endfor %}
+					</table>
+					
+					        {% if is_granted('ROLE_ADMIN') == true %}
+            <a class="btn btn-success" href="{{ path('planning_new', { 'langue': 'en'}) }}"><i class="fa fa-plus-square"></i> Add a planning</a>
+{% endif %}
+			
+</tbody>
+    </div>
+{% endblock %}

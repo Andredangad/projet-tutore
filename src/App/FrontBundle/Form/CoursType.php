@@ -11,7 +11,7 @@ class CoursType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titre')->add('description');
+        $builder->add('titre')->add('description')->add('langue');
     }/**
      * {@inheritdoc}
      */

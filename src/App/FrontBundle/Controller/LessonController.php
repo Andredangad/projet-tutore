@@ -75,7 +75,7 @@ class LessonController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($cours);
             $em->flush();
-            return $this->redirectToRoute('app_lesson');
+            return $this->redirectToRoute('app_lesson', array( 'langue' => $foo ));
         }
         $foo = $request->get('langue');
         return $this->render($foo.'/cours/addCours.html.twig', array(
@@ -163,7 +163,7 @@ class LessonController extends Controller
         $foo = $request->get('langue');
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute($foo.'app_lesson');
+            return $this->redirectToRoute('app_lesson', array( 'langue' => $foo ));
         }
         return $this->render($foo.'/cours/editCours.html.twig', array(
             'cours' => $cours,

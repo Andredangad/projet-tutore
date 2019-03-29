@@ -41,7 +41,12 @@ class Cours
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="langue", type="string", length=255, nullable=true)
+     */
+    private $langue;
 
     /**
      * Get id
@@ -123,6 +128,29 @@ class Cours
     public function getDescription()
     {
         return $this->description;
+    }
+	/**
+     * Set langue
+     *
+     * @param string $langue
+     *
+     * @return Cours
+     */
+    public function setLangue($langue)
+    {
+        $this->langue = $langue;
+
+        return $this;
+    }
+
+    /**
+     * Get langue
+     *
+     * @return string
+     */
+    public function getLangue()
+    {
+        return $this->langue;
     }
 }
 

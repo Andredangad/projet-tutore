@@ -1,0 +1,69 @@
+{% extends 'en/base.html.twig' %}
+{% block body %}
+    <div class="jumbotron text-center">
+	<h1>Semester 2</h1>
+</thead>
+
+                    <tbody>
+
+
+<br/>
+<br/>
+ {% if is_granted('ROLE_ADMIN') == false %}
+         
+
+
+					<table>
+
+                            <tr>
+							<td></td>
+                                <td>Monday</td>
+								<td>Tuesday</td>
+								<td>Wednesday</td>
+								<td>Thursday</td>
+								<td>Friday</td>
+								
+								
+
+                          
+                            </tr>
+						
+
+                        {% for affichage in affichage %}
+                            <tr>
+							<td>{{ affichage.heure }}</td>
+                                <td>{{ affichage.lundi }}</td>
+								<td>{{ affichage.mardi }}</td>
+								<td>{{ affichage.mercredi }}</td>
+								<td>{{ affichage.jeudi }}</td>
+								<td>{{ affichage.vendredi }}</td>
+								
+								
+
+                          
+                            </tr>
+						
+                        {% endfor %}
+					</table>
+					{% endif %}
+					{% for modifier in modifier %}
+                            <tr>
+{% if is_granted('ROLE_ADMIN') == true %}
+							<a class="btn btn-primary btn-sm" href="{{ path('planning_show', { 'filiere': modifier.filiere, 'langue': 'en' }) }}">Edit {{modifier.filiere}} planning<i class="fa fa-pencil-square-o"></i> </a>
+							{% endif %}
+<br>
+								
+								
+
+                          
+                            </tr>
+					
+                        {% endfor %}
+							<br>
+					        {% if is_granted('ROLE_ADMIN') == true %}
+            <a class="btn btn-success" href="{{ path('planning_new', { 'langue': 'en'}) }}"><i class="fa fa-plus-square"></i> Add a planning</a>
+{% endif %}
+			
+</tbody>
+    </div>
+{% endblock %}
