@@ -18,6 +18,6 @@
     </div>
 	{% if is_granted('ROLE_TRAD') == true %}
 	<br>
-	<a class="btn btn-outline-info my-2 my-sm-0" href="{{ path('lesson_add_cours', {'langue': 'fr'}) }}"><i class="fa fa-plus-square"></i> Ajouter un cours</a>
+	<a class="btn btn-success" href="{{ path('lesson_add_cours', {'langue': 'fr'}) }}"><i class="fa fa-plus-square"></i> Ajouter un cours</a>
 	{% endif %}
 {% endblock %}
