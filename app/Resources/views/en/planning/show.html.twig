@@ -11,32 +11,43 @@
 <br/>
 
 
-					<table>
-					{% for planning in planning %}
-                            <tr>
-							<td>{{ planning.heure }}</td>
-                                <td>{{ planning.lundi }}</td>
-								<td>{{ planning.mardi }}</td>
-								<td>{{ planning.mercredi }}</td>
-								<td>{{ planning.jeudi }}</td>
-								<td>{{ planning.vendredi }}   {% if is_granted('ROLE_ADMIN') == true %}
-                                        <a class="btn btn-primary btn-sm" href="{{ path('planning_edit', { 'id': planning.id, 'langue': 'en' }) }}">Edit<i class="fa fa-pencil-square-o"></i> </a>
-{% endif %}</td>
-								    
-								
 
-                          
-                            </tr>
-						
-                                    
-						
-                        {% endfor %}
+					{% for planning in planning %}
+
+						<table class="table table-dark">
+					  <thead>
+
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<tr>
+					      <td>Filiére : {{ planning.filiere }}</td>
+					    </tr>
+					     <tr>
+					      <td> Lundi : {{ planning.heure }} {{ planning.lundi }}</td>
+					    </tr>
+					     <tr>
+					      <td> Mardi : {{ planning.heure }} {{ planning.mardi }}</td>
+					    </tr>
+					     <tr>
+					      <td> Mercredi : {{ planning.heure }} {{ planning.mercredi }}</td>
+					    </tr>
+					     <tr>
+					      <td> Jeudi :  {{ planning.heure }} {{ planning.jeudi }}</td>
+					    </tr>
+					 	 <tr>
+					      <td> Vendredi :  {{ planning.heure }} {{ planning.vendredi }}</td>
+					    </tr>
+					     <tr>
+					      <td> Langue :  {{ planning.langue }} </td>
+					    </tr>
+					  </tbody>
+					 
 					</table>
-					
 					        {% if is_granted('ROLE_ADMIN') == true %}
             <a class="btn btn-success" href="{{ path('planning_new', { 'langue': 'en'}) }}"><i class="fa fa-plus-square"></i> Add a planning</a>
 {% endif %}
-			
+			 {% endfor %}
 </tbody>
     </div>
 {% endblock %}

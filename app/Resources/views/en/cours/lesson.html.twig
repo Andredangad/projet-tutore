@@ -16,7 +16,7 @@ Lessons :
 
 {% if is_granted('ROLE_ADMIN') == true %}
 					{% for modifier in modifier %}
-							<a class="btn btn-primary btn-sm" href="{{ path('lesson_show_cours', { 'id': modifier.id, 'langue': 'en' }) }}">Edit lesson  {{modifier.titre}}<i class="fa fa-pencil-square-o"></i> </a>
+							<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;" href="{{ path('lesson_show_cours', { 'id': modifier.id, 'langue': 'en' }) }}">Edit lesson  {{modifier.titre}}<i class="fa fa-pencil-square-o"></i> </a>
 
 <br>
 

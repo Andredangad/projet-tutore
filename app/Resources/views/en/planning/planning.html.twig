@@ -49,7 +49,7 @@
 					{% for modifier in modifier %}
                             <tr>
 {% if is_granted('ROLE_ADMIN') == true %}
-							<a class="btn btn-primary btn-sm" href="{{ path('planning_show', { 'filiere': modifier.filiere, 'langue': 'en' }) }}">Edit {{modifier.filiere}} planning<i class="fa fa-pencil-square-o"></i> </a>
+							<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;"  href="{{ path('planning_show', { 'filiere': modifier.filiere, 'langue': 'en' }) }}">Edit {{modifier.filiere}} planning<i class="fa fa-pencil-square-o"></i> </a>
 							{% endif %}
 <br>
 								
@@ -61,7 +61,7 @@
                         {% endfor %}
 							<br>
 					        {% if is_granted('ROLE_ADMIN') == true %}
-            <a class="btn btn-success" href="{{ path('planning_new', { 'langue': 'en'}) }}"><i class="fa fa-plus-square"></i> Add a planning</a>
+            <a class="btn btn-outline-info my-2 my-sm-0"  href="{{ path('planning_new', { 'langue': 'en'}) }}"><i class="fa fa-plus-square"></i> Add a planning</a>
 {% endif %}
 			
 </tbody>
