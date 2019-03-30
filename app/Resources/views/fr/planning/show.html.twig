@@ -10,8 +10,14 @@
 <br/>
 <br/>
 						<table class="table table-dark">
-					{% for planning in planning %}
 
+								<td>Planning</td>
+                                <td>Lundi</td>
+                                <td>Mardi</td>
+                                <td>Mercredi</td>
+                                <td>Jeudi</td>
+                                <td>Vendredi</td>
+					{% for planning in planning %}
 
 					  <thead>
 
@@ -24,7 +30,8 @@
 								<td>{{ planning.mardi }}</td>
 								<td>{{ planning.mercredi }}</td>
 								<td>{{ planning.jeudi }}</td>
-								<td>{{ planning.vendredi }}   {% if is_granted('ROLE_ADMIN') == true %}
+								<td>{{ planning.vendredi }}   
+								{% if is_granted('ROLE_ADMIN') == true %}
                                         <a class="btn btn-primary btn-sm" href="{{ path('planning_edit', { 'id': planning.id,'langue': 'fr' }) }}">Modifier<i class="fa fa-pencil-square-o"></i> </a>
 {% endif %}</td>
 								    
