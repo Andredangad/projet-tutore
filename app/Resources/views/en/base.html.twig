@@ -18,26 +18,25 @@
    <body>
 
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Learn & Trad</a>
+  <a class="navbar-brand" href="{{ path('home') }}">Learn & Trad</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li {% if app.request.attributes.get('_route') == "home" %} class="nav-item active"{% endif %}>
         <a class="nav-link" href="{{ path('home') }}">Home</a>
       </li>
-      <li class="nav-item">
+      <li {% if app.request.attributes.get('_route') == "app_lesson" %} class="nav-item active"{% endif %}>
         <a class="nav-link" href="{{ path('app_lesson', {'langue': 'en'}) }}">Lesson</a>
       </li>
-      <li class="nav-item">
+      <li {% if app.request.attributes.get('_route') == "app_planning" %} class="nav-item active"{% endif %}>
         <a class="nav-link" href="{{ path('app_planning', {'langue': 'en'}) }}">Planning</a>
       </li>
-       <li class="nav-item">
+       <li {% if app.request.attributes.get('_route') == "app_contact" %} class="nav-item active"{% endif %}>
         <a class="nav-link" href="{{ path('app_contact', {'langue': 'en'}) }}">Contact</a>
       </li>
-
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fl"> </span>Languages</a>
           <div class="dropdown-menu" aria-labelledby="dropdown09">
@@ -50,10 +49,6 @@
         <a class="nav-link" href="{{ path('logout') }}">Logout</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
 

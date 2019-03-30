@@ -1,12 +1,15 @@
 {% extends 'en/base.html.twig' %}
 {% block body %}
     <div class="jumbotron text-center">
-	   <h1>List of the lessons</h1>
+	   <h1>List of the lessons :</h1>
+	   <br>
 	    {% for affichage in affichage %}
 
 <h3>{{affichage.titre}}</h3>
-	   <br>
+
 {{affichage.description}}
+	   <br>
+	   <br>
 	   <br>
 	   {% if is_granted('ROLE_TRAD') == true %}
 							<a class="btn btn-primary btn-sm" href="{{ path('lesson_edit_cours', { 'id': affichage.id, 'langue': 'en' }) }}">Edit {{affichage.titre}}<i class="fa fa-pencil-square-o"></i> </a>

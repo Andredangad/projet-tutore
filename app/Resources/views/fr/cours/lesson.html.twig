@@ -10,7 +10,7 @@ Afficher les cours de :
 <br>
 
 
-<a class="btn btn-primary btn-sm" href="{{ path('lesson_show_cours', { 'id': affichage.id, 'langue': 'fr' }) }}"> {{affichage.titre}}<i class="fa fa-pencil-square-o" ></i> </a>
+<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;" href="{{ path('lesson_show_cours', { 'id': affichage.id, 'langue': 'fr' }) }}"> {{affichage.titre}}<i class="fa fa-pencil-square-o" ></i> </a>
 {% endfor %}
 {% endif %}
 
