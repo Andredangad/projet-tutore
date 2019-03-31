@@ -1,24 +1,15 @@
 {% extends 'en/base.html.twig' %}
 {% block body %}
     <div class="jumbotron text-center">
-	<h1>Semestre 2</h1>
-</thead>
-
-                    <tbody>
+		<h1>Semestre 2</h1>
+            <tbody>
 
 
-<br/>
-<br/>
+			<br/>
+			<br/>
+				{% for planning in planning %}
 
-
-
-					{% for planning in planning %}
-
-						<table class="table table-dark">
-					  <thead>
-
-					    </tr>
-					  </thead>
+					<table class="table table-dark">
 					  <tbody>
 					  	<tr>
 					      <td>Filiére : {{ planning.filiere }}</td>
@@ -44,10 +35,10 @@
 					  </tbody>
 					 
 					</table>
-					        {% if is_granted('ROLE_ADMIN') == true %}
-            <a class="btn btn-success" href="{{ path('planning_new', { 'langue': 'en'}) }}"><i class="fa fa-plus-square"></i> Add a planning</a>
-{% endif %}
-			 {% endfor %}
-</tbody>
+					    {% if is_granted('ROLE_ADMIN') == true %}
+							<a class="btn btn-success" href="{{ path('planning_new', { 'langue': 'en'}) }}"><i class="fa fa-plus-square"></i> Add a planning</a>
+						{% endif %}
+				{% endfor %}
+					</tbody>
     </div>
 {% endblock %}

@@ -1,38 +1,24 @@
 {% extends 'en/base.html.twig' %}
+{# Modele affichage des matières #}
 {% block body %}
-<br>
+	<br>
+		{% if is_granted('ROLE_ADMIN') == false %}
+			Lessons :
+			{% for affichage in affichage %}
+	<br>
+				<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;" href="{{ path('lesson_show_cours', { 'id': affichage.id, 'langue': 'en'}) }}"> {{affichage.titre}}<i class="fa fa-pencil-square-o"></i> </a>
+			{% endfor %}
+		{% endif %}
 
-{% if is_granted('ROLE_ADMIN') == false %}
-Lessons :
- {% for affichage in affichage %}
+		{% if is_granted('ROLE_ADMIN') == true %}
+			{% for modifier in modifier %}
+				<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;" href="{{ path('lesson_show_cours', { 'id': modifier.id, 'langue': 'en' }) }}">Edit lesson  {{modifier.titre}}<i class="fa fa-pencil-square-o"></i> </a>
 
+	<br>
 
-<br>
+			{% endfor %}
 
-
-<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;" href="{{ path('lesson_show_cours', { 'id': affichage.id, 'langue': 'en'}) }}"> {{affichage.titre}}<i class="fa fa-pencil-square-o"></i> </a>
-{% endfor %}
-{% endif %}
-
-{% if is_granted('ROLE_ADMIN') == true %}
-					{% for modifier in modifier %}
-							<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;" href="{{ path('lesson_show_cours', { 'id': modifier.id, 'langue': 'en' }) }}">Edit lesson  {{modifier.titre}}<i class="fa fa-pencil-square-o"></i> </a>
-
-<br>
-
-
-
-
-                            </tr>
-
-                        {% endfor %}
-
-{% endif %}
-
-
-
-
-
+		{% endif %}
 
 
 {% endblock %}

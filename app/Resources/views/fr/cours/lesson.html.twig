@@ -1,38 +1,24 @@
 {% extends 'fr/base.html.twig' %}
+{# Affichage des matières  #}
 {% block body %}
 <br>
-
 {% if is_granted('ROLE_ADMIN') == false %}
-Afficher les cours de :
- {% for affichage in affichage %}
+	Afficher les cours de :
+	{% for affichage in affichage %}
+	<br>
 
- 
-<br>
-
-
-<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;" href="{{ path('lesson_show_cours', { 'id': affichage.id, 'langue': 'fr' }) }}"> {{affichage.titre}}<i class="fa fa-pencil-square-o" ></i> </a>
-{% endfor %}
+		<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;" href="{{ path('lesson_show_cours', { 'id': affichage.id, 'langue': 'fr' }) }}"> {{affichage.titre}}<i class="fa fa-pencil-square-o" ></i> </a>
+	{% endfor %}
 {% endif %}
 
 {% if is_granted('ROLE_ADMIN') == true %}
-					{% for modifier in modifier %}
-							<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;" href="{{ path('lesson_show_cours', { 'id': modifier.id, 'langue': 'fr' }) }}">Modifier le cours {{modifier.titre}}<i class="fa fa-pencil-square-o"></i> </a>
+	{% for modifier in modifier %}
+		<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;" href="{{ path('lesson_show_cours', { 'id': modifier.id, 'langue': 'fr' }) }}">Modifier le cours {{modifier.titre}}<i class="fa fa-pencil-square-o"></i> </a>
 
-<br>
-								
-								
-
-                          
-                            </tr>
-					
-                        {% endfor %}
+		<br>
+    {% endfor %}
 
 {% endif %}
-								
-
-                          
-
-						
 
 
 {% endblock %}

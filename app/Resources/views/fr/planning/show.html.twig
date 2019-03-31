@@ -1,58 +1,52 @@
 {% extends 'fr/base.html.twig' %}
+{# Affichage modification admin planning  #}
 {% block body %}
     <div class="jumbotron text-center">
 	<h1>Semestre 2</h1>
-</thead>
-
-                    <tbody>
-
-
-<br/>
-<br/>
-						<table class="table table-dark">
-								<td></td>
-								<td>Planning</td>
-                                <td>Lundi</td>
-                                <td>Mardi</td>
-                                <td>Mercredi</td>
-                                <td>Jeudi</td>
-                                <td>Vendredi</td>
+		<tbody>
+		<br/>
+		<br/>
+			<table class="table table-dark">
+				<td></td>
+				<td>Planning</td>
+                 <td>Lundi</td>
+                 <td>Mardi</td>
+                 <td>Mercredi</td>
+                 <td>Jeudi</td>
+                 <td>Vendredi</td>
 					{% for planning in planning %}
 
-					  <thead>
-
-					    </tr>
-					  </thead>
-					  <tbody>
-<tr>	
+					<tbody>
+						<tr>	
 							<td>{{ planning.filiere }}</td>
 							<td>{{ planning.heure }}</td>
-                                <td>{{ planning.lundi }}</td>
-								<td>{{ planning.mardi }}</td>
-								<td>{{ planning.mercredi }}</td>
-								<td>{{ planning.jeudi }}</td>
-								<td>{{ planning.vendredi }}   
+                            <td>{{ planning.lundi }}</td>
+							<td>{{ planning.mardi }}</td>
+							<td>{{ planning.mercredi }}</td>
+							<td>{{ planning.jeudi }}</td>
+							<td>{{ planning.vendredi }}   
 								{% if is_granted('ROLE_ADMIN') == true %}
-                                        <a class="btn btn-primary btn-sm" href="{{ path('planning_edit', { 'id': planning.id,'langue': 'fr' }) }}">Modifier<i class="fa fa-pencil-square-o"></i> </a>
-{% endif %}</td>
+                                    <a class="btn btn-primary btn-sm" href="{{ path('planning_edit', { 'id': planning.id,'langue': 'fr' }) }}">Modifier<i class="fa fa-pencil-square-o"></i> </a>
+								{% endif %}
+								</td>
 								    
 								
 
                           
-</tr>
-					  </tbody>
+						</tr>
+					</tbody>
 					 
 			
                                     
 
-                        {% endfor %}
+                    {% endfor %}
 
-					</table>
+			</table>
 
-					        {% if is_granted('ROLE_ADMIN') == true %}
-            <a class="btn btn-success" href="{{ path('planning_new', {'langue': 'fr'}) }}"><i class="fa fa-plus-square"></i> Ajouter un planning</a>
-{% endif %}
+			{% if is_granted('ROLE_ADMIN') == true %}
+				<a class="btn btn-success" href="{{ path('planning_new', {'langue': 'fr'}) }}"><i class="fa fa-plus-square"></i> Ajouter un planning</a>
+			{% endif %}
 			
-</tbody>
+		</tbody>
     </div>
 {% endblock %}
