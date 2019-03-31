@@ -13,6 +13,7 @@ class PlanningController extends Controller
 {
 
     public function planningAction(Request $request)
+// Requete pour affichage du planning
     {
  $user = $this->getUser();
 
@@ -27,13 +28,7 @@ class PlanningController extends Controller
 
         $result = $statement->fetchAll();
 		
-		$QUERY = 'SELECT * FROM planning WHERE id=1';
-        
-        $jour = $em->getConnection()->prepare($QUERY);
-        $jour->execute();
 
-        $resultat = $jour->fetchAll();
-		
 		$QUERYS = 'SELECT DISTINCT filiere FROM planning';
 		
         
@@ -43,18 +38,18 @@ class PlanningController extends Controller
         $results = $state->fetchAll();
 		
         return $this->render($foo.'/planning/planning.html.twig',array(
-		'planning'=>$resultat,
 		'affichage'=>$result,
 		'modifier'=>$results,
 		));
 
 
     }
-		/**
+	/**
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function newAction(Request $request)
     {
+		// Requete pour ajout du planning
 		$foo = $request->get('langue');
         $planning = new Planning();
         $form = $this->createForm('App\FrontBundle\Form\PlanningType', $planning);
@@ -75,7 +70,8 @@ class PlanningController extends Controller
     }
  public function modifierAction(Request $request)
     {
- $user = $this->getUser();
+
+		$user = $this->getUser();
 
 
 		$em = $this->getDoctrine()->getManager();
@@ -93,6 +89,7 @@ class PlanningController extends Controller
      */
     public function showAction(Request $request)
     {
+
 		$foo = $request->get('filiere');
 		$em = $this->getDoctrine()->getManager();
         $planning = $em->getRepository('AppFrontBundle:Planning')->findAll();
@@ -110,6 +107,7 @@ class PlanningController extends Controller
      */
     public function editAction(Request $request, Planning $planning)
     {
+		// Requete pour modification du planning
 		$foo = $request->get('langue');
         $editForm = $this->createForm('App\FrontBundle\Form\PlanningType', $planning);
         $editForm->handleRequest($request);

@@ -1,69 +1,55 @@
 {% extends 'en/base.html.twig' %}
+{# Modele affichage planning #}
 {% block body %}
     <div class="jumbotron text-center" style="background-color: white;">
-	<h1>Semester 2</h1>
-</thead>
-
-                    <tbody>
-
-
-<br/>
-<br/>
- {% if is_granted('ROLE_ADMIN') == false %}
-         
-
-
+		<h1>Semester 2</h1>
+			<tbody>
+			<br/>
+			<br/>
+				{% if is_granted('ROLE_ADMIN') == false %}
 					<table class="table table-dark">
 
-                            <tr>
-							<td></td>
-                                <td>Monday</td>
-								<td>Tuesday</td>
-								<td>Wednesday</td>
-								<td>Thursday</td>
-								<td>Friday</td>
-								
-								
+                         <tr>
+							<td>Planning</td>
+                            <td>Monday</td>
+							<td>Tuesday</td>
+							<td>Wednesday</td>
+							<td>Thursday</td>
+							<td>Friday</td>
 
-                          
-                            </tr>
+                        </tr>
 						
 
                         {% for affichage in affichage %}
                             <tr>
-							<td>{{ affichage.heure }}</td>
+								<td>{{ affichage.heure }}</td>
                                 <td>{{ affichage.lundi }}</td>
 								<td>{{ affichage.mardi }}</td>
 								<td>{{ affichage.mercredi }}</td>
 								<td>{{ affichage.jeudi }}</td>
 								<td>{{ affichage.vendredi }}</td>
-								
-								
-
-                          
+		
                             </tr>
 						
                         {% endfor %}
 					</table>
-					{% endif %}
+				{% endif %}
 					{% for modifier in modifier %}
-                            <tr>
-{% if is_granted('ROLE_ADMIN') == true %}
-							<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;"  href="{{ path('planning_show', { 'filiere': modifier.filiere, 'langue': 'en' }) }}">Edit {{modifier.filiere}} planning<i class="fa fa-pencil-square-o"></i> </a>
+                        <tr>
+							{% if is_granted('ROLE_ADMIN') == true %}
+								<a class="btn btn-primary btn-sm" style="margin-bottom: 1%;"  href="{{ path('planning_show', { 'filiere': modifier.filiere, 'langue': 'en' }) }}">Edit {{modifier.filiere}} planning<i class="fa fa-pencil-square-o"></i> </a>
 							{% endif %}
-<br>
-								
+						<br>
 								
 
-                          
-                            </tr>
+                        </tr>
 					
-                        {% endfor %}
-							<br>
-					        {% if is_granted('ROLE_ADMIN') == true %}
-            <a class="btn btn-outline-info my-2 my-sm-0"  href="{{ path('planning_new', { 'langue': 'en'}) }}"><i class="fa fa-plus-square"></i> Add a planning</a>
-{% endif %}
+                    {% endfor %}
+						<br>
+					    {% if is_granted('ROLE_ADMIN') == true %}
+							<a class="btn btn-outline-info my-2 my-sm-0"  href="{{ path('planning_new', { 'langue': 'en'}) }}"><i class="fa fa-plus-square"></i> Add a planning</a>
+						{% endif %}
 			
-</tbody>
+			</tbody>
     </div>
 {% endblock %}
