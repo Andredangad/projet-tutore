@@ -1,0 +1,20 @@
+.form-row {
+width:500px;
+margin-left: auto !important;
+margin-right: auto !important;
+
+}
+
+.error {
+color:red;
+}
+
+.title{
+text-align:center;
+margin-top:50px;
+margin-bottom:50px;
+}
+
+.form-control{
+margin-bottom:15px;
+}
