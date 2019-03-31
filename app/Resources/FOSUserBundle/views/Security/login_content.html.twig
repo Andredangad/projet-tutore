@@ -178,22 +178,22 @@ dl, ol, ul {
                     <li></li>
                     
 
-
+ <div class="form-row" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364); margin-top: 10%; border-radius: 10px; color: white;">
 <form action="{{ path("fos_user_security_check") }}" method="post">
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     {% endif %}
-  <div class="form-row" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364); margin-top: 10%; border-radius: 10px; color: white;">
+ 
   <div class="title col-sm-12">
   <h1>Learn & Translate</h1>
   <br>
   <h3>Connexion</h3>
   </div>
-    <div class="col-sm-6">
+    <div class="col">
     <label for="username">{{ 'Account name'|trans }}</label>
     <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
    </div>
-       <div class="col-sm-6">
+       <div class="col">
     <label for="password">{{ 'Password'|trans }}</label>
     <input type="password" class="form-control" id="password" name="_password" required="required" autocomplete="current-password" />
    </div>

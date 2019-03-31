@@ -1,6 +1,6 @@
 
 .form-row {
-width:500px;
+width:356px;
 margin-left: auto !important;
 margin-right: auto !important;
 
@@ -18,4 +18,9 @@ margin-bottom:50px;
 
 .form-control{
 margin-bottom:15px;
+}
+
+form {
+
+
 }
